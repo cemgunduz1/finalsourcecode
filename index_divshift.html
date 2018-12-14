@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchronized Map</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="dist/jquery.vmap.js"></script>
+    <script src="dist/maps/jquery.vmap.world.js"></script>
+    
+    <link rel="stylesheet" href="dist/jqvmap_1.css"/>
+  
+    
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id='loader-wrapper'>
+      <div id='loader'></div>'
+
+      <div class='loader-section section-left'></div>
+      <div class='loader-section section-right'></div>
+
+    </div>
+    <header>
+        <div class="container">
+          <img src='sync_logo.png' alt='logo' class='logo'>
+    
+          <nav>
+            <ul>
+              <li><a href="ru_report.html">Home</a></li>
+              <li><a href="#phase1">Phase I</a></li>
+              <li><a href="#phase2">Phase II</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  <div id='infobox' ></div>
+  <div id="worldmap"></div>
+      
+  <script>
+    jQuery('#worldmap').vectorMap({
+        map: 'world_en',
+        backgroundColor: '#000000',
+        color: 'gold',
+        hoverOpacity: 0.5,
+        selectedColor: 'silver',
+        showTooltip: true,
+        onRegionClick: function() {
+         if  ($('#infobox').toggle()) {
+            $('#worldmap').css({
+                'width': '850px',
+                'left': '0px', 
+            });
+
+         };
+          document.getElementById("infobox").innerHTML='<object data="ru_report.html"></object>';
+
+        }
+          
+    });
+
+    $(document).ready(function() {
+      setTimeout(function() {
+        $('body').addClass('loaded');
+    
+      }, 0);
+
+
+    })
+
+
+    </script>
+    
+</body>
+</html>

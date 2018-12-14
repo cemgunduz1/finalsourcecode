@@ -1,0 +1,73 @@
+html {
+    overflow: auto;
+    background: black;
+}
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13.5px;
+    color: white;
+}
+h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    color: gold;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: gold;
+
+}
+
+nav {
+    float: right;
+
+  }
+  
+  nav ul {
+    margin: 0px;
+    margin-right: 0px;
+    padding: 0;
+    list-style: none;
+  
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 15px;
+  
+    position: relative;
+  }
+  
+  nav a {
+    color: silver;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  nav a:hover {
+    color: gold;
+  }
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: gold;
+  
+    position: absolute;
+    top: 0;
+    width: 0%;
+  
+    transition: all ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    width: 100%;
+  }
+  
+  

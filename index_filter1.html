@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchronized Map</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="jquery-jvectormap.js"></script>
+    <script src="tests/assets/jquery-jvectormap-world-mill-en.js"></script>
+    
+    <link rel="stylesheet" href='jquery-jvectormap_filter.css'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    
+    <style>
+
+      </style>
+  </head>
+  <body>
+      <form autocomplete='off'>
+          <input type="text" placeholder="Country" maxlength='20' id='mySearch' required oninvalid="this.setCustomValidity('Please enter the name of a country')" oninput="this.setCustomValidity('')" >
+          <button onclick="myCountry(document.getElementById('mySearch').value)"  type="button"  id='submit'><i class='fa fa-search'></i></button>
+  </form>
+      
+      <header>
+          <div class="container1">
+            <img src='sync_logo.png' alt='logo' class='logo'>
+      
+            <nav>
+              <ul>
+                <li><a href="index_back.html">Return</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+    
+    <div id="worldmap">
+        <a class="push_button red" href="index_DE.html">D&E</a>
+        <a class="push_button blue" href="index_GDP.html">GDP</a>
+        <a class="push_button green" href="index_MOI.html">MOI</a>
+        <a class="push_button yellow" href="index_UR.html">UR</a>
+        
+    </div>
+      
+  <script>
+    jQuery('#worldmap').vectorMap({
+        map: 'world_mill_en',
+        backgroundColor: '#000000',
+        regionsSelectable: true,
+        regionStyle: {
+          initial: {
+          fill: '#282828'
+          },
+          hover: {
+          fill: 'silver'
+          },
+          selected: {
+          fill: 'white'
+          }
+      },
+        markerStyle: {
+          initial: {
+            fill: '#F8E23B',
+            stroke: '#383F47'
+          }
+        },
+        markers: [
+          {latLng: [41.90,-87.36],name:'Synchrony Financial'}
+        ]
+});
+
+                                       //SEARCH BAR CODE AND COUNTRIES
+
+var mapObject=$('#worldmap').vectorMap('get','mapObject');
+
+
+var dict= {
+                'bangladesh':'BD',
+                'belgium':'BE',
+                'burkina faso':'BF',
+                'bulgaria':'BG',
+                'bosnia':'BA',
+                'brunei':'BN',
+                'bolivia':'BO',
+                'japan':'JP',
+                'burundi':'BI',
+                'benin':'BJ',
+                'bhutan':'BT',
+                'jamaica':'JM',
+                'botswana':'BW',
+                'brazil':'BR',
+                'bahamas':'BS',
+                'belarus':'BY',
+                'belize':'BZ',
+                'russia':'RU',
+                'rwanda':'RW',
+                'serbia':'RS',
+                'timor leste':'TL',
+                'turkmenistan':'TM',
+                'tajikistan':'TJ',
+                'romania':'RO',
+                'bissau':'GW',
+                'guatemala':'GT',
+                'greece':'GR',
+                'equatorial':'GQ',
+                'guyana':'GY',
+                'georgia':'GE',
+                'united kingdom':'GB',
+                'gabon':'GA',
+                'guinea':'GN',
+                'gambia':'GM',
+                'greenland':'GL',
+                'ghana':'GH',
+                'oman':'OM',
+                'tunisia':'TN',
+                'jordan':'JO',
+                'croatia':'HR',
+                'haiti':'HT',
+                'hungary':'HU',
+                'honduras':'HN',
+                'puerto rico':'PR',
+                'palestine':'PS',
+                'portugal':'PT',
+                'paraguay':'PY',
+                'panama':'PA',
+                'new guinea':'PG',
+                'peru':'PE',
+                'pakistan':'PK',
+                'phillippines':'PH',
+                'poland':'PL',
+                'zambia':'ZM',
+                'western sahara':'EH',
+                'estonia':'EE',
+                'egypt':'EG',
+                'south africa':'ZA',
+                'ecuador':'EC',
+                'italy':'IT',
+                'vietnam':'VN',
+                'solomon':'SB',
+                'ethiophia':'ET',
+                'somalia':'SO',
+                'zimbabwe':'ZW',
+                'spain':'ES',
+                'eritrea':'ER',
+                'montenegro':'ME',
+                'moldova':'MD',
+                'madagascar':'MG',
+                'morocco':'MA',
+                'uzbekistan':'UZ',
+                'myanmar':'MM',
+                'mali':'ML',
+                'mongolia':'MN',
+                'macedonia':'MK',
+                'malawi':'MW',
+                'mauritania':'MR',
+                'uganda':'UG',
+                'malaysia':'MY',
+                'mexico':'MX',
+                'israel':'IL',
+                'france':'FR',
+                'somaliland':'XS',
+                'finland':'FI',
+                'fiji':'FJ',
+                'falkland':'FK',
+                'nicaragua':'NI',
+                'netherlands':'NL',
+                'norway':'NO',
+                'namibia':'NA',
+                'vanuatu':'VU',
+                'new caledonia':'NC',
+                'niger':'NE',
+                'nigeria':'NG',
+                'new zealand':'NZ',
+                'nepal':'NP',
+                'kosovo':'XK',
+                'ivory coast':'CI',
+                'switzerland':'CH',
+                'colombia':'CO',
+                'china':'CN',
+                'cameroon':'CM',
+                'chile':'CL',
+                'north cyprus':'XC',
+                'canada':'CA',
+                'congo':'CG',
+                'central african':'CF',
+                'democratic congo':'CD',
+                'czech republic':'CZ',
+                'cyprus':'CY',
+                'costa rica':'CR',
+                'cuba':'CU',
+                'swaziland':'SZ',
+                'syria':'SY',
+                'kyrgyztan':'KG',
+                'kenya':'KE',
+                'south sudan':'SS',
+                'suriname':'SR',
+                'cambodia':'KH',
+                'el salvador':'SV',
+                'slovakia':'SK',
+                'south korea':'KR',
+                'slovenia':'SI',
+                'north korea':'KP',
+                'kuwait':'KW',
+                'senegal':'SN',
+                'sierra leone':'SL',
+                'kazakhstan':'KZ',
+                'saudi arabia':'SA',
+                'sweden':'SE',
+                'sudan':'SD',
+                'dominican republic':'DO',
+                'djibouti':'DJ',
+                'denmark':'DK',
+                'germany':'DE',
+                'yemen':'YE',
+                'algeria':'DZ',
+                'united states':'US',
+                'uruguay':'UY',
+                'lebanon':'LB',
+                'lao':'LA',
+                'taiwan':'TW',
+                'trinidad':'TT',
+                'turkey':'TR',
+                'sri lanka':'LK',
+                'latvia':'LV',
+                'lithunia':'LT',
+                'luxembourg':'LU',
+                'liberia':'LR',
+                'lesotho':'LS',
+                'thailand':'TH',
+                'antarctic lands':'TF',
+                'togo':'TG',
+                'chad':'TD',
+                'libya':'LY',
+                'united arab emirates':'AE',
+                'venezuela':'VE',
+                'afghanistan':'AF',
+                'iraq':'IQ',
+                'iceland':'IS',
+                'iran':'IR',
+                'armenia':'AM',
+                'albania':'AL',
+                'angola':'AO',
+                'argentina':'AR',
+                'australia':'AU',
+                'austria':'AT',
+                'india':'IN',
+                'tanzania':'TZ',
+                'azerbaijan':'AZ',
+                'ireland':'IE',
+                'indonesia':'ID',
+                'ukraine':'UA',
+                'qatar':'QA',
+                'mozambique':'MZ'
+
+};
+
+function myCountry(i) {
+    mapObject.clearSelectedRegions();
+    mapObject.setSelectedRegions(dict[i.toLowerCase()]);
+  };
+
+    </script>
+    
+</body>
+</html>
